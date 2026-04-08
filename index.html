@@ -193,15 +193,24 @@
             return (
                 <div>
                     <header>
-                        <div className="logo">
-                            <h1>{lang === 'en' ? 'Fragrant Bakery' : '飘香饼屋'}</h1>
-                            <p>{lang === 'en' ? 'Tel: 437-340-1137 | Cell: 647-958-1555' : '电话: 437-340-1137 | 订餐电话: 647-958-1555'}</p>
+                        <div className="header-top">
+                            <div className="logo">
+                                <h1>{lang === 'en' ? 'Fragrant Bakery' : '飘香饼屋'}</h1>
+                                <p>{lang === 'en' ? 'Tel: 437-340-1137 | Cell: 647-958-1555' : '电话: 437-340-1137 | 订餐电话: 647-958-1555'}</p>
+                            </div>
+                            <div className="lang-toggle">
+                                <button onClick={toggleLang}>
+                                    {lang === 'en' ? '中文' : 'English'}
+                                </button>
+                            </div>
                         </div>
-                        <div className="lang-toggle">
-                            <button onClick={toggleLang}>
-                                {lang === 'en' ? '中文' : 'English'}
-                            </button>
-                        </div>
+                        <nav className="category-nav">
+                            {categories.map(category => (
+                                <a key={category.id} href={`#${category.id}`}>
+                                    {lang === 'en' ? category.name_en : category.name_zh}
+                                </a>
+                            ))}
+                        </nav>
                     </header>
 
                     <section className="hero">
@@ -214,7 +223,7 @@
 
                     <main className="menu-section">
                         {categories.map(category => (
-                            <div key={category.id} className="menu-category">
+                            <div key={category.id} id={category.id} className="menu-category">
                                 <h3 className="category-title text-zh">
                                     {lang === 'en' ? category.name_en : category.name_zh}
                                 </h3>
